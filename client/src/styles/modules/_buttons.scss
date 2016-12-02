@@ -1,0 +1,50 @@
+
+
+
+
+.btn-round {
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  display: inline-block;
+  margin: 1rem;
+  border: 1px solid $white;
+  border-radius: 30px;
+  background-color: rgba($black, 0.3);
+  color: $white;
+  text-align: center;
+  &:hover{
+    background-color: rgba($black, 0.8);
+  }
+
+}
+
+.btn-full {
+  width: 100%;
+  color: $white;
+  overflow: hidden;
+  &:hover {
+    color: $white;
+  }
+}
+
+.btn-back{
+  position: absolute;
+  top: 33px; left: 0;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  padding: .7rem 1.7rem;
+  background-color: $white;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  i{
+    color: $red;
+    font-size: 1.5rem;
+  }
+}
+
+.share-link{
+  display: block;
+  -webkit-tap-highlight-color: rgba($white, 0);
+}
