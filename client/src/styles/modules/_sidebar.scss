@@ -1,0 +1,11 @@
+
+aside {
+	width: 500px;
+	height: 100vh;
+	padding: 4rem 2rem;
+	background-color: rgba($blue-lt, 0.1);
+	>img{
+		max-width: 80%;
+		margin: 0 auto;
+	}
+}
