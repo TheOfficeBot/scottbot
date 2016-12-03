@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird')
 
 mongoURI = "mongodb://jackie:password@ds119738.mlab.com:19738/scottbot";
 mongoose.connect(mongoURI, function(err){
