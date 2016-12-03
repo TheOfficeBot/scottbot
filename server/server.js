@@ -1,9 +1,10 @@
 const express 		= require('express'),
 	    morgan 		= require('morgan'),
-	    path      		= require('path'),
-	    bodyParser = require('body-parser');
-	     // db			 =require('./db'), // ADD WHEN DONE
-	     // ****Router = require('./controllers/****'); // ADD WHEN DONE
+	    path      	= require('path'),
+	    bodyParser = require('body-parser')
+	    // Router = require('./controllers/****'); // ADD WHEN DONE
+var contentController = require('./controllers/content.js')
+var db = require('./db/config.js')
 
 // CONFIG (USE) ============================
 
@@ -25,7 +26,8 @@ app.listen(app.get('port'), function(){
 })
 
 // ROUTING (GET) =============================
-
+app.get('/api/content', contentController.get)
+app.post('/api/addcontent', contentController.post)
 // Connect controller for endpoint
 //app.use('/api/tasks', taskRouter)
 
