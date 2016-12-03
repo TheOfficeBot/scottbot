@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var contentSchema = newSchema({
+var contentSchema = new Schema({
 	name: String,
 	uri: String,
 	character: String,
@@ -9,4 +9,7 @@ var contentSchema = newSchema({
 	date: {type: Date, default: Date.now}
 })
 
-module.exports= mongoose.model('Content', contentSchema);
+var Content = mongoose.model('Content', contentSchema);
+
+
+module.exports = Content;
