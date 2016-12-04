@@ -1,9 +1,50 @@
 
 
 .ugc-form{
+	transition: transform .3s ease;
+	&.is-hidden{
+		transform: scale(0)
+	}
+
+}
+
 	input[type=text]{
 		display: block;
 		width: 100%;
 		margin-bottom: 1rem;
 	}
+
+.form-success{
+	text-align: center;	
+	opacity: 0;
+	transform: translateY(200px);
+	transition: all .3s ease;
+	h3{
+		font-size: 2rem;
+		font-weight: 700;
+		text-align: center;
+		span{
+			display: block;
+			font-size: 1.25rem;
+			font-weight: 300;
+		}
+	}
+	.thumbs-up{
+		height: 200px;
+		width: 200px;
+		margin: 0 auto;
+		border-radius: 50%;
+		background-size: cover;
+		background-position: 70%;
+	}
+	&.is-visible{
+			opacity: 1;
+			transform: translateY(-100px);
+	}
+}
+.reset-form{
+	color: $turq;
+	text-align: center;
+	font-size: .8rem;
+	margin: 0 auto;
 }
