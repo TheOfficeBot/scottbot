@@ -35,8 +35,13 @@ app.get('/api/content', contentController.get)
 app.post('/api/addcontent', contentController.post)
 // Connect controller for endpoint
 //app.use('/api/tasks', taskRouter)
-
-app.get('*', (req, res) => {
-	res.sendfile('./client/public/index.html');
-})
+if (process.env.NODE_ENV === 'production') {
+	app.get('*', (req, res) => {
+		res.sendfile('./client/build/index.html');
+	})	
+} else {
+		app.get('*', (req, res) => {
+		res.sendfile('./client/public/index.html');
+	})	
+}
 
