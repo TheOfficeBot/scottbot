@@ -8,7 +8,7 @@ export  function  validateImage(imgPath){
 		return imgPath
 	}
 	else{
-		console.error("Not an image");
+		return false;
 	}
 	  	
 }

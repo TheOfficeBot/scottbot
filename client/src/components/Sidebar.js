@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { validateImage } from '../helpers/validation';
 import Form from './Form';
 import scott from '../assets/scott_isolated.png'
 import paper from '../assets/paper_fibers.png'
@@ -20,8 +19,6 @@ class Sidebar  extends Component{
 	      <aside>
 	      	 	<img src={scott} alt=""/>
 	      	 	<Form/>
-
-
 	      </aside>
 	    )
 	}
