@@ -70,8 +70,20 @@ class Form  extends Component{
     return (
     		<div className="form-wrap">
 	  	      	 <form className={ formClass } onSubmit={this.handleSubmit.bind(this)}>
-	    	 		<input   type="text" ref="name" />
-	    	 		<input type="text"  ref="image"/>
+	  	      	 	<span className="input">
+	  	      	 		<input className="input_field"   type="text" ref="name" />
+	  	      	 		<label className="input_label">
+	  	      	 			<span className="input_label-content">Your Name</span>
+	  	      	 		</label>
+	  	      	 	</span>
+	  	      	 	<span className="input">
+	  	      	 		<input className="input_field"   type="text" ref="image" />
+	  	      	 		<label className="input_label">
+	  	      	 			<span className="input_label-content">Image</span>
+	  	      	 		</label>
+	  	      	 	</span>
+	    	 		
+
 
 	    	 		   <label>Which Office Character are  You Adding?:          
 			          <select  ref="character">
