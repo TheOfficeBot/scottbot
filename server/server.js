@@ -37,7 +37,9 @@ app.post('/api/addcontent', contentController.post)
 //app.use('/api/tasks', taskRouter)
 if (process.env.NODE_ENV === 'production') {
 	app.get('*', (req, res) => {
-		res.sendfile('./client/build/index.html');
+		console.log("IN THE GET FOR PROD" )
+			
+		res.sendfile('client/build/index.html');
 	})	
 } else {
 		app.get('*', (req, res) => {
