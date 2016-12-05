@@ -6,7 +6,7 @@ mongoose.connect(mongoURI, function(err){
 	if(err){
 		console.log("Error: failed connection", err)
 	} else {
-		console.log("Succes: connected to the db")
+		console.log("Success: connected to the db")
 	}
 });
 
