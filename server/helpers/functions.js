@@ -10,7 +10,8 @@ module.exports.filterChar = function(name, array) {
   var results = [];
   for(var i = 0; i < array.length; i++){
     var mediaObj = array[i];
-    if(name === mediaObj.character){
+    console.log(mediaObj.character);
+    if(mediaObj.character.includes(name)){
       results.push(mediaObj);
     }
   }

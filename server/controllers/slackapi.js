@@ -1,5 +1,7 @@
 var helperFunc = require('../helpers/functions.js');
 var seedData = require('../helpers/seedData.js');
+var Activity = require('../models/activity.js');
+var ActivityCtrl = require('../controllers/activity.js');
 
 module.exports = {
   post: function (req, res) {
@@ -10,13 +12,22 @@ module.exports = {
       var randomNumber = helperFunc.randomize(seedData);
       res.send(seedData[randomNumber]);
     }else {
-      console.log('inside else', character);
+      //console.log('inside else', character);
       var charMedia = helperFunc.filterChar(character.toLowerCase(), seedData);
       //console.log(charMedia);
       var randomNumber = helperFunc.randomize(charMedia);
-      res.send(charMedia[randomNumber]);
+      var content = charMedia[randomNumber];
+      console.log("inside slack api controller logging content", content);
+      var activity = new Activity({
+        team_domain: req.body.team_domain,
+      	channel_name: req.body.channel_name,
+      	user_name: req.body.user_name,
+      	character: req.body.text,
+      	content: content.text
+      })
+      console.log("inside slack api controller logging content", content)
+      ActivityCtrl.post(activity, res);
+      res.send(content);
     }
-
-    //seedData[randomNumber]
   }
 };
