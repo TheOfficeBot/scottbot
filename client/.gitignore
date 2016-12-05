@@ -6,8 +6,11 @@ node_modules
 # testing
 coverage
 
+# compiled CSS
+main.css
+
 # production
-build
+#build
 
 # misc
 .DS_Store

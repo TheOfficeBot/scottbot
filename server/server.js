@@ -1,5 +1,5 @@
 const express 		= require('express'),
-			app = express(),
+	   app = express(),
 	    morgan 		= require('morgan'),
 	    path      	= require('path'),
 	    bodyParser = require('body-parser');
@@ -12,7 +12,13 @@ var slackAPI = require('./controllers/slackapi.js');
 app.use( morgan('dev') );
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/', express.static(path.join(__dirname, 'public')));
+
+if (process.env.NODE_ENV === 'production') {
+  app.use('/',express.static('client/build'));
+} else {
+   app.use('/', express.static(path.join(__dirname, 'public')));
+}
+
 // LISTEN (SET) =============================
 app.set('port', (process.env.PORT || 3001));
 app.listen(app.get('port'), function(){
