@@ -21,15 +21,31 @@ class Form  extends Component{
 			isSent: false
 		})
 	}
+	handleFocusName(e){
+		this.setState({
+			focusName: true
+		})		
+	}
+	handleBlurName(e){
+		this.setState({
+			focusName: (ReactDOM.findDOMNode(this.refs.name).value.length > 1) ? true : false
+		})		
+	}
+	handleFocusImage(e){
+		this.setState({
+			focusImage: true
+		})		
+	}
+	handleBlurImage(e){
+		this.setState({
+			focusImage: (ReactDOM.findDOMNode(this.refs.image).value.length > 1) ? true : false
+		})		
+	}
 
 
 	handleSubmit(e) {
 	    e.preventDefault();
 	    
-	    	
-	
-
-
 	    this.setState({
 	    	isSending: true
 	    })
@@ -67,17 +83,25 @@ class Form  extends Component{
       'form-success': true,
       'is-visible': this.state.isSent
     });
+      	const nameInput = classNames({
+      'input': true,
+      'input-filled': this.state.focusName
+    });
+    const imageInput = classNames({
+      'input': true,
+      'input-filled': this.state.focusImage
+    });
     return (
     		<div className="form-wrap">
 	  	      	 <form className={ formClass } onSubmit={this.handleSubmit.bind(this)}>
-	  	      	 	<span className="input">
-	  	      	 		<input className="input_field"   type="text" ref="name" />
+	  	      	 	<span className={nameInput}>
+	  	      	 		<input className="input_field" onBlur={this.handleBlurName.bind(this)} onFocus={this.handleFocusName.bind(this)}   type="text" ref="name" />
 	  	      	 		<label className="input_label">
 	  	      	 			<span className="input_label-content">Your Name</span>
 	  	      	 		</label>
 	  	      	 	</span>
-	  	      	 	<span className="input">
-	  	      	 		<input className="input_field"   type="text" ref="image" />
+	  	      	 	<span className={imageInput}>
+	  	      	 		<input className="input_field" onBlur={this.handleBlurImage.bind(this)} onFocus={this.handleFocusImage.bind(this)}     type="text" ref="image" />
 	  	      	 		<label className="input_label">
 	  	      	 			<span className="input_label-content">Image</span>
 	  	      	 		</label>

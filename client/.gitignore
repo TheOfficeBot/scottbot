@@ -6,6 +6,9 @@ node_modules
 # testing
 coverage
 
+# compiled CSS
+main.css
+
 # production
 #build
 
