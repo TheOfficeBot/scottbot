@@ -10,7 +10,18 @@ module.exports = {
     if(character === '' || character === undefined){
       console.log('inside if');
       var randomNumber = helperFunc.randomize(seedData);
-      res.send(seedData[randomNumber]);
+      var content = seedData[randomNumber];
+      console.log("inside slack api controller logging content", content);
+      var activity = new Activity({
+        team_domain: req.body.team_domain,
+      	channel_name: req.body.channel_name,
+      	user_name: req.body.user_name,
+      	character: req.body.text,
+      	content: content.text
+      });
+      console.log("inside slack api controller logging content", content);
+      ActivityCtrl.post(activity, res);
+      res.send(content);
     }else {
       //console.log('inside else', character);
       var charMedia = helperFunc.filterChar(character.toLowerCase(), seedData);
@@ -24,8 +35,8 @@ module.exports = {
       	user_name: req.body.user_name,
       	character: req.body.text,
       	content: content.text
-      })
-      console.log("inside slack api controller logging content", content)
+      });
+      console.log("inside slack api controller logging content", content);
       ActivityCtrl.post(activity, res);
       res.send(content);
     }
