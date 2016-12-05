@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var db = require('../db');
+// var db = require('../db');
 var Schema = mongoose.Schema;
 
 var activitySchema = new Schema({
@@ -13,6 +13,4 @@ var activitySchema = new Schema({
 
 var Activity = mongoose.model('Activity', activitySchema);
 
-module.exports = {
-	Activity: Activity
-}
+module.exports = Activity;
