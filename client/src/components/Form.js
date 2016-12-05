@@ -4,14 +4,18 @@ import classNames from 'classnames';
 import { postAPI } from '../helpers/http';
 import { validateImage } from '../helpers/validation';
 import thumbs from '../assets/thumbs_up.gif';
-
+import michael_tn from '../assets/scott_thumb.jpg';
+import dwight_tn from '../assets/dwight_thumb.jpg';
+import jim_tn from '../assets/jim_thumb.jpg';
+import kevin_tn from '../assets/kevin_thumb.jpg';
 
 class Form  extends Component{
 	constructor() {
 	    super();
 	    this.state = {
 	    	isSending: false,
-	    	isSent: false
+	    	isSent: false,
+	    	character: ''
 	    }
 	}
 
@@ -74,6 +78,12 @@ class Form  extends Component{
 
 	}
 
+	selectChar(char){
+		this.setState({
+			character: char
+		})			
+	}
+
   render () {
   	const formClass = classNames({
       'ugc-form': true,
@@ -91,8 +101,15 @@ class Form  extends Component{
       'input': true,
       'input-filled': this.state.focusImage
     });
+    const {character} = this.state
     return (
     		<div className="form-wrap">
+    			 	<div className="character-select">
+    					<button style={{backgroundImage: 'url(' + michael_tn + ')'}} className={character == 'michael'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('michael')}></button>
+    					<button style={{backgroundImage: 'url(' + dwight_tn + ')'}} className={character == 'dwight'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('dwight')}></button>
+    					<button style={{backgroundImage: 'url(' + jim_tn + ')'}} className={character == 'jim'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('jim')}></button>
+    					<button style={{backgroundImage: 'url(' + kevin_tn + ')'}} className={character == 'kevin'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('kevin')}></button>
+    			</div>
 	  	      	 <form className={ formClass } onSubmit={this.handleSubmit.bind(this)}>
 	  	      	 	<span className={nameInput}>
 	  	      	 		<input className="input_field" onBlur={this.handleBlurName.bind(this)} onFocus={this.handleFocusName.bind(this)}   type="text" ref="name" />
@@ -107,21 +124,13 @@ class Form  extends Component{
 	  	      	 		</label>
 	  	      	 	</span>
 	    	 		
+	    	 		   <label>Which Office Character are  You Adding?: </label>
 
-
-	    	 		   <label>Which Office Character are  You Adding?:          
-			          <select  ref="character">
-				            <option value="michael">Michael Scott</option>
-				            <option value="dwight">Dwight Shrute</option>
-				            <option value="jim">Jim</option>
-				            <option value="stanley">Stanley</option>
-		          	    </select>
-		        	</label>
 	  			<input type="submit" value="submit"/>
 	  			{this.state.isSending ? <p>SENDING</p> : null}
 	    	 	</form>
-	    	 	<div className={successClass}>
-	    	 		
+
+	    	 	<div className={successClass}>	    	 		
 	    	 		<div className="thumbs-up" style={{backgroundImage: 'url(' + thumbs + ')'}}>
 	    	 		</div>
 	    	 		<h3>FACT: <span>Your submission has been sent!</span></h3>
