@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
+// import TextField from 'material-ui/TextField';
 
 import { validateImage } from '../helpers/validation';
 import scott from '../assets/scott_isolated.png'
