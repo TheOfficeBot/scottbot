@@ -18,7 +18,8 @@
     "mongoose": "^4.7.1",
     "morgan": "^1.7.0",
     "mpromise": "^0.5.5",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "request": "^2.79.0"
   },
   "devDependencies": {
     "concurrently": "^3.1.0"
