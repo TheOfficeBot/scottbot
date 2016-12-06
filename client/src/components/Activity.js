@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { getAPI } from '../helpers/http';
 import Card from './Card';
+const socket = io();
 
 class Activity  extends Component{
 	constructor(){
@@ -10,6 +11,10 @@ class Activity  extends Component{
 			cardData: ['a','b']
 		}
 	}
+
+      socket.on('message', (message) => {
+         console.log("SOCKET ON CLIENT" )        
+      })
 
         componentWillMount(){
             getAPI('activity')
