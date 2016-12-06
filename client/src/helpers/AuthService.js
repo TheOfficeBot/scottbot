@@ -1,12 +1,12 @@
 import Auth0Lock from 'auth0-lock';
 import { browserHistory } from 'react-router';
 
-export default class AuthServide {
+export default class AuthService {
 	constructor(clientId, domain) {
 		//Configure Auth0
 		this.lock = new Auth0Lock(clientId, domain, {
 			auth: {
-				redirectUrl: "http://localhost:3000/login",
+				redirectUrl: "http://localhost:3000/#/admin",
 				responseType: 'token'
 			}
 		})
@@ -19,7 +19,7 @@ export default class AuthServide {
 	    // Saves the user token
 	    this.setToken(authResult.idToken)
 	    // navigate to the home route
-	    browserHistory.replace('/home')
+	    browserHistory.replace('/admin')
   	}
   	 login() {
     	// Call the show method to display the widget.
