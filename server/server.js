@@ -53,6 +53,7 @@ app.get('/slack', function(req, res){
 			qs: {code: req.query.code, client_id: clientId, client_secret: clientSecret},
 			method: 'GET'
 		}, function(error, response, body){
+			console.log('boddyyyyyy!!!',body);
 			if(error){
 				console.log('fuck we got an error', error);
 			}else{
