@@ -13,7 +13,7 @@
 	text-align: center;	
 	opacity: 0;
 	transform: translateY(200px);
-	transition: all .3s ease;
+	transition: all .4s ease;
 	h3{
 		font-size: 2rem;
 		font-weight: 700;
@@ -34,7 +34,7 @@
 	}
 	&.is-visible{
 			opacity: 1;
-			transform: translateY(-100px);
+			transform: translateY(-350px);
 	}
 }
 .reset-form{

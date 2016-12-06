@@ -49,13 +49,13 @@ class Form  extends Component{
 
 	handleSubmit(e) {
 	    e.preventDefault();
-	    
+	    this.contentForm.reset();
 	    this.setState({
 	    	isSending: true
 	    })
 	    const formData = {
 	    	name:ReactDOM.findDOMNode(this.refs.name).value,
-	    	character:  ReactDOM.findDOMNode(this.refs.character).value,
+	    	character:  this.state.character,
 	    	image:  ReactDOM.findDOMNode(this.refs.image).value
 	    } 
 	    if( validateImage(formData.image) !== false ){
@@ -68,9 +68,11 @@ class Form  extends Component{
 	            	    this.setState({
 	            	        isSending: false,
 	            	        isSent: true
+
 	            	    })
+	            	    
 	        })
-	    } else {
+	        } else {
 	    	this.setState({
 	    		validImage: false
 	    	})
@@ -104,13 +106,17 @@ class Form  extends Component{
     const {character} = this.state
     return (
     		<div className="form-wrap">
-    			 	<div className="character-select">
+   
+	  	      	 <form className={ formClass } ref="contentForm" onSubmit={this.handleSubmit.bind(this)}>
+	  	      	  	<div className="character-select">
     					<button style={{backgroundImage: 'url(' + michael_tn + ')'}} className={character == 'michael'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('michael')}></button>
     					<button style={{backgroundImage: 'url(' + dwight_tn + ')'}} className={character == 'dwight'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('dwight')}></button>
     					<button style={{backgroundImage: 'url(' + jim_tn + ')'}} className={character == 'jim'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('jim')}></button>
     					<button style={{backgroundImage: 'url(' + kevin_tn + ')'}} className={character == 'kevin'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('kevin')}></button>
-    			</div>
-	  	      	 <form className={ formClass } onSubmit={this.handleSubmit.bind(this)}>
+
+    				</div>
+    				<p className="selected-char">Character: <span>{this.state.character}</span> </p>
+
 	  	      	 	<span className={nameInput}>
 	  	      	 		<input className="input_field" onBlur={this.handleBlurName.bind(this)} onFocus={this.handleFocusName.bind(this)}   type="text" ref="name" />
 	  	      	 		<label className="input_label">
@@ -124,9 +130,7 @@ class Form  extends Component{
 	  	      	 		</label>
 	  	      	 	</span>
 	    	 		
-	    	 		   <label>Which Office Character are  You Adding?: </label>
-
-	  			<input type="submit" value="submit"/>
+	  			<input className="btn-submit" type="submit" value="submit"/>
 	  			{this.state.isSending ? <p>SENDING</p> : null}
 	    	 	</form>
 
