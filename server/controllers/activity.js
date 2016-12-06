@@ -7,24 +7,35 @@ var Activity = require('../models/activity.js');
 
 
 module.exports = {
-  post: function(req, res){
-    // var activty = new Activity({
-    //   team_domain: ,
-    // 	channel_name: ,
-    // 	user_name: ,
-    // 	character: ,
-    // 	content: ,
-    // 	date:
-    // })
-    console.log("req in content post", req)
-    req.save(function(err){
-      if(err){
-        throw(err);
-      } else {
-      console.log("this fires after the post hook")
-      }
-    }).then(function(arg){
-      res.send("posted to db")
-    })
+    get: function(req, res) {
+        Activity.find(function(err, content) {
+            if (err) {
+                return handleError(err);
+            }
+            if (content) {
+                res.json(content);
+            }
+        })
+    },
+    post: function(req, res) {
+        // var activty = new Activity({
+        //   team_domain: ,
+        //  channel_name: ,
+        //  user_name: ,
+        //  character: ,
+        //  content: ,
+        //  date:
+        // })
+        console.log("req in content post", req)
+        req.save(function(err) {
+            if (err) {
+                throw (err);
+            } else {
+                console.log("this fires after the post hook")
+            }
+        }).then(function(arg) {
+            res.send("posted to db")
+        })
+    }
 }
-}
+

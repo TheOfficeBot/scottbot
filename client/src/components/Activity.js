@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { getAPI } from '../helpers/http';
 import Card from './Card';
 
@@ -6,12 +7,12 @@ class Activity  extends Component{
 	constructor(){
 		super();
 		this.state ={
-			cardData: []
+			cardData: ['a','b']
 		}
 	}
 
         componentWillMount(){
-            getAPI('content')
+            getAPI('activity')
               .then(item =>{
                  this.setState({
                       cardData: item.data
@@ -26,7 +27,9 @@ class Activity  extends Component{
   	})
     return (
       <section className="activity">
+
       		{cardStream}
+
       </section>
     )
   }

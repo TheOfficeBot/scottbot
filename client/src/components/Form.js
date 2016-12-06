@@ -126,7 +126,7 @@ class Form  extends Component{
 	  	      	 	<span className={imageInput}>
 	  	      	 		<input className="input_field" onBlur={this.handleBlurImage.bind(this)} onFocus={this.handleFocusImage.bind(this)}     type="text" ref="image" />
 	  	      	 		<label className="input_label">
-	  	      	 			<span className="input_label-content">Image</span>
+	  	      	 			<span className="input_label-content">Image {character.length > 1 ? `for ${character}` : null}</span>
 	  	      	 		</label>
 	  	      	 	</span>
 	    	 		
