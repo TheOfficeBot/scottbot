@@ -1,0 +1,31 @@
+
+
+.character-select{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.character{
+	height: 60px;
+	width: 60px;
+	background-color: $turq;
+	border-radius: 50%;
+	background-size: cover;
+	background-position: center center;
+	box-shadow: 0 0 0 3px $white, 0 0 0 6px transparent;
+	&.is-selected{
+		box-shadow: 0 0 0 3px $white, 0 0 0 6px $turq;
+	}
+}
+
+.selected-char{
+	width: 100%;
+	padding: .25rem;
+	margin-top: 1rem;
+	text-align: left;
+	color: $gray;
+	span{
+		color: $turq;
+		font-weight: 700;
+	}
+}
