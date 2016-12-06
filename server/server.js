@@ -2,8 +2,11 @@ const express 		= require('express'),
 	   app = express(),
 	    morgan 		= require('morgan'),
 	    path      	= require('path'),
-	    bodyParser = require('body-parser');
-	    // Router = require('./controllers/****'); // ADD WHEN DONE
+	    bodyParser = require('body-parser'),
+	   server = require('http').Server(app),
+	   io = require('socket.io')(server);
+
+
 var contentController = require('./controllers/content.js');
 var activityController = require('./controllers/activity.js')
 var db = require('./db/config.js');
@@ -25,10 +28,19 @@ app.set('port', (process.env.PORT || 3001));
 app.listen(app.get('port'), function(){
 	console.log('API Server started: http://localhost:' + app.get('port') + '/');
 })
+
+// SOCKET  ==== ==============================
+io.on('connection', function (socket) {
+  socket.emit('activity', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+
 // ROUTING (GET) =============================
 app.get('/api/content', contentController.get);
 app.post('/api/addcontent', contentController.post);
-//
+
 app.post('/api/slack', slackAPI.post);
 
 app.get('/api/activity', activityController.get);
