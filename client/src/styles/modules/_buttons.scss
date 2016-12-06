@@ -19,32 +19,24 @@
 
 }
 
-.btn-full {
+.btn-submit{
   width: 100%;
-  color: $white;
-  overflow: hidden;
-  &:hover {
-    color: $white;
-  }
+  height: 60px;
+  line-height: 52px;
+  margin-top: 4rem;
+  border: 3px solid $gray;
+  background-color: transparent;
+  color: $gray;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  outline: none;
+  transition: all .3s ease;
+    &:hover{
+        background-color: $turq;
+        border-color: $turq;
+        color: $white;
+    }
 }
 
-.btn-back{
-  position: absolute;
-  top: 33px; left: 0;
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-  padding: .7rem 1.7rem;
-  background-color: $white;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
-  i{
-    color: $red;
-    font-size: 1.5rem;
-  }
-}
 
-.share-link{
-  display: block;
-  -webkit-tap-highlight-color: rgba($white, 0);
-}
