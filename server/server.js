@@ -26,8 +26,8 @@ app.listen(app.get('port'), function(){
 	console.log('API Server started: http://localhost:' + app.get('port') + '/');
 })
 //.env file
-// var clientId = '111745854261.110999636593';
-// var clientSecret = '693955155b02e4b92ceeaf31b8bd9410';
+var clientId = '111745854261.110999636593';
+var clientSecret = '693955155b02e4b92ceeaf31b8bd9410';
 
 // ROUTING (GET) =============================
 app.get('/api/content', contentController.get);
@@ -47,10 +47,10 @@ app.get('/slack', function(req, res){
       res.send({"Error": "Looks like we're not getting code."});
       console.log("Looks like we're not getting code.");
   }else {
-		console.log(process.env.SLACK_CLIENT_ID);
+		//console.log(process.env.SLACK_CLIENT_ID);
 		request({
 			url: 'https://slack.com/api/oauth.access',
-			qs: {code: req.query.code, client_id: process.env.SLACK_CLIENT_ID, client_secret: process.env.SLACK_CLIENT_SECRET},
+			qs: {code: req.query.code, client_id: clientId, client_secret: clientSecret},
 			method: 'GET'
 		}, function(error, response, body){
 			if(error){
