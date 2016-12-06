@@ -31,6 +31,7 @@ app.post('/api/slack', slackAPI.post);
 app.get('/slack', function(req, res){
 	console.log('oh shit req.query', req.query);
 	if (!req.query.code) {
+				console.log(req.query.code);
         res.status(500);
         res.send({"Error": "Looks like we're not getting code."});
         console.log("Looks like we're not getting code.");
