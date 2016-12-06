@@ -3,8 +3,8 @@ const express 		= require('express'),
 	    morgan 		= require('morgan'),
 	    path      	= require('path'),
 	    bodyParser = require('body-parser'),
-	   server = require('http').Server(app),
-	   io = require('socket.io')(server);
+	   server = require('http').Server(app);
+	   // io = require('socket.io')(server);
 
 
 var contentController = require('./controllers/content.js');
@@ -29,20 +29,20 @@ app.listen(app.get('port'), function(){
 	console.log('API Server started: http://localhost:' + app.get('port') + '/');
 })
 
+require('./controllers/activity')
+
 // SOCKET  ==== ==============================
-  io.on('connection', (socket) => {
-    console.log('a user connected');
+  // io.on('connection', (socket) => {
+  //   console.log('a user connected');
 
-  });
+  // });
 server.listen(8080)
-// var socketio = require('socket.io');
-// exports.socketServer = function (app, server) {
-//   var io = socketio.listen(server);
 
-//   io.sockets.on('connection', function (socket) {
-    
-//   });
-// };
+
+
+// sockets.js
+var socketio = require('socket.io');
+
 
 // ROUTING (GET) =============================
 app.get('/api/content', contentController.get);
@@ -55,3 +55,13 @@ app.get('/api/activity', activityController.get);
 app.get('*', (req, res) => {
 	res.sendfile('./client/public/index.html');
 })
+
+// module.exports  = function (app, server) {
+//   var io = socketio.listen(server);
+
+//   io.sockets.on('connection', function (socket) {
+   
+//   });
+// };
+
+
