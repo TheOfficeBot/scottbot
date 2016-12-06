@@ -1,21 +1,5 @@
 var Activity = require('../models/activity.js');
 
-// var io = socketio.listen(server);
-
-// io.sockets.on('connection', function (socket) {
-//     console.log("IN SOCKET",socket )
-//     socket.emit('activity', { hello: 'world' });
-
-        
-// });
-
-
-console.log('sockets', socketio )
-    
-
-//export
-//post method
-//instantiate row in collection
 
 
 module.exports = {
