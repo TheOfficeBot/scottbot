@@ -25,8 +25,8 @@ app.listen(app.get('port'), function(){
 	console.log('API Server started: http://localhost:' + app.get('port') + '/');
 })
 // ROUTING (GET) =============================
-// app.get('/api/content', contentController.get);
-// app.post('/api/addcontent', contentController.post);
+app.get('/api/content', contentController.get);
+app.post('/api/addcontent', contentController.post);
 //
 app.post('/api/slack', slackAPI.post);
 // Connect controller for endpoint
