@@ -22,7 +22,7 @@ class Activity  extends Component{
        render () {
 
   	const cardStream = this.state.cardData.map( (item, i)=>{
-  		return <Card deets={item} />
+  		return <Card deets={item} key={i} />
   	})
     return (
       <section className="activity">

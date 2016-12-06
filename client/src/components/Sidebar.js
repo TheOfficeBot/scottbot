@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import Form from './Form';
+import { validateImage } from '../helpers/validation';
 import scott from '../assets/scott_isolated.png'
 import paper from '../assets/paper_fibers.png'
-
-//console.log('LOG',validateImage(52345234) )
-
 
 class Sidebar  extends Component{
 	constructor(){
 		super();
-
 	}
-
-
-
 	render () {
 	    return (
 	      <aside>
