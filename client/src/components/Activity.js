@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { getAPI } from '../helpers/http';
 import Card from './Card';
-const socket = io();
+import io from 'socket.io-client';
+import _ from 'lodash';
+const socket = io('http://localhost:8080')
 
 class Activity  extends Component{
 	constructor(){
@@ -10,17 +12,19 @@ class Activity  extends Component{
 		this.state ={
 			cardData: ['a','b']
 		}
+        //socket.emit('activity', { my: 'data' });
 	}
 
-      socket.on('message', (message) => {
-         console.log("SOCKET ON CLIENT" )        
-      })
-
-        componentWillMount(){
+      componentWillMount(){
+ 
+          // socket.on('activity', function (name, fn) {
+          //   console.log("SOCKET ON MOUNT", name )          
+          // });
             getAPI('activity')
               .then(item =>{
+                //console.log( _.sortBy(item.data, [(items) => item.date]) )
                  this.setState({
-                      cardData: item.data
+                      cardData: _.sortBy(item.data, [(items) => item.date]).reverse()
                  })               
               })
         }
