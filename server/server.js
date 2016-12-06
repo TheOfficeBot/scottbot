@@ -4,7 +4,8 @@ const express 		= require('express'),
 	    path      	= require('path'),
 	    bodyParser = require('body-parser');
 	    // Router = require('./controllers/****'); // ADD WHEN DONE
-var contentController = require('./controllers/content.js')
+var contentController = require('./controllers/content.js');
+var activityController = require('./controllers/activity.js')
 var db = require('./db/config.js');
 var slackAPI = require('./controllers/slackapi.js');
 
@@ -27,9 +28,10 @@ app.listen(app.get('port'), function(){
 // ROUTING (GET) =============================
 app.get('/api/content', contentController.get);
 app.post('/api/addcontent', contentController.post);
+
 app.post('/api/slack', slackAPI.post);
-// Connect controller for endpoint
-//app.use('/api/tasks', taskRouter)
+
+app.get('/api/activity', activityController.get);
 
 app.get('*', (req, res) => {
 	res.sendfile('./client/public/index.html');
