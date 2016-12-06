@@ -28,6 +28,13 @@ app.listen(app.get('port'), function(){
 app.get('/api/content', contentController.get);
 app.post('/api/addcontent', contentController.post);
 app.post('/api/slack', slackAPI.post);
+app.get('/slack', function(req, res){
+	if (!req.query.code) {
+        res.status(500);
+        res.send({"Error": "Looks like we're not getting code."});
+        console.log("Looks like we're not getting code.");
+    }
+});
 // Connect controller for endpoint
 //app.use('/api/tasks', taskRouter)
 
