@@ -4,8 +4,7 @@ import App from './components/App';
 import Activity from './components/Activity';
 import Admin from './components/Administrator';
 import { Router, Route, browserHistory } from 'react-router';
-// import { Link } from 'react-router';
-import './index.css';
+// import './index.css';
 import AuthService from './helpers/AuthService.js';
 import Login from './components/Login.js';
 import Container from './components/Container.js';
@@ -19,15 +18,6 @@ const requireAuth = (nextState, replace) => {
   } 
 }
 
-
-// const Routes = (
-// 	<Route path="/" component={Container} auth={auth}>
-//       <IndexRedirect to="/home" />
-//       <Route path="home" component={App}/>
-//       <Route path="admin" component={Admin} onEnter={requireAuth} />
-//       <Route path="login" component={Login} />
-//     </Route>
-//  )
 const Routes = (
 	 <Router history={browserHistory}>
 	    <Route path="/" component={Container} auth={auth}>
