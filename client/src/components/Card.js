@@ -8,13 +8,12 @@ class Card  extends Component{
   	const imgStyle = {
   		backgroundImage: 'url(' + deets.content + ')'
   	}
-    console.log(typeof deets.date )
       
-    //const timeStamp = deets.date.toString()
+    const timeStamp = (deets.date)? deets.date : "2016-12-05T18:40:53.794Z"; 
     return (
       <div className="card-wrap">
       		<div className="card-label">
-                    <TimeAgo date="2016-12-05T18:40:53.794Z"/> ago from {deets.user_name} in {deets.channel_name}</div>
+                    <TimeAgo date={timeStamp}/> ago from {deets.user_name} in {deets.channel_name}</div>
       		<div className="stem"></div>
       		<div className="image-block" style={imgStyle}></div>
       		<p className="attribute">Submitted by: <span></span></p>

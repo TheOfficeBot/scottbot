@@ -1,6 +1,5 @@
 var Activity = require('../models/activity.js');
 
-
 //export
 //post method
 //instantiate row in collection
@@ -34,7 +33,9 @@ module.exports = {
                 console.log("this fires after the post hook")
             }
         }).then(function(arg) {
+            //socket.emit('activity', { hello: 'world' });
             res.send("posted to db")
+            // emit socket stuff
         })
     }
 }

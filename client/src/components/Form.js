@@ -49,7 +49,7 @@ class Form  extends Component{
 
 	handleSubmit(e) {
 	    e.preventDefault();
-	    this.contentForm.reset();
+	    // this.contentForm.reset();
 	    this.setState({
 	    	isSending: true
 	    })

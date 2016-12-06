@@ -8,7 +8,7 @@ const express 		= require('express'),
 
 
 var contentController = require('./controllers/content.js');
-var activityController = require('./controllers/activity.js')
+var activityController = require('./controllers/activity.js');
 var db = require('./db/config.js');
 var slackAPI = require('./controllers/slackapi.js');
 
@@ -30,12 +30,19 @@ app.listen(app.get('port'), function(){
 })
 
 // SOCKET  ==== ==============================
-io.on('connection', function (socket) {
-  socket.emit('activity', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
+  io.on('connection', (socket) => {
+    console.log('a user connected');
+
   });
-});
+server.listen(8080)
+// var socketio = require('socket.io');
+// exports.socketServer = function (app, server) {
+//   var io = socketio.listen(server);
+
+//   io.sockets.on('connection', function (socket) {
+    
+//   });
+// };
 
 // ROUTING (GET) =============================
 app.get('/api/content', contentController.get);
