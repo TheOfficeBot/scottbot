@@ -29,6 +29,7 @@ app.get('/api/content', contentController.get);
 app.post('/api/addcontent', contentController.post);
 app.post('/api/slack', slackAPI.post);
 app.get('/slack', function(req, res){
+	console.log(req.query);
 	if (!req.query.code) {
         res.status(500);
         res.send({"Error": "Looks like we're not getting code."});
