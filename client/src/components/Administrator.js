@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'; 
 
-
 class Admin extends Component {
   render() {
     return (
@@ -14,4 +13,3 @@ class Admin extends Component {
 }
 
 export default Admin;
-
