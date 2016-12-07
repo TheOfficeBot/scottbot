@@ -11,7 +11,7 @@ module.exports = {
     if(character === '' || character === undefined){
       var randomNumber = helperFunc.randomize(seedData);
       //======
-      var dataFromDB = return contentControl.get();
+      var dataFromDB = contentControl.get();
       console.log(dataFromDB);
       //======
       var content = seedData[randomNumber];
