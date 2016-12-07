@@ -14,16 +14,15 @@ module.exports = {
       //======
       var dataFromDB;
 
-      var getFromContents = function(request,response){
-  			Content.find(function(err, content){
-  				if(err){
-  					return handleError(err);
-  				}
-  				if(content){
-  					dataFromDB = content;
-  				}
-  			})
-  		};
+
+  			Content.find({})
+        .then(result=>{
+            console.log('yoooooo', result);
+        })
+        .catch(err=>{
+          console.log('error', err);
+        })
+
       getFromContents();
 
       console.log(dataFromDB);
