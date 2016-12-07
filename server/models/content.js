@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var contentSchema = new Schema({
 	name: String,
 	text: String,
-	character: String,
+	character: Array,
 	response_type: {type: String, default: "in_channel"},
 	approved: {type: Boolean, default: false},
 	date: {type: Date, default: Date.now}

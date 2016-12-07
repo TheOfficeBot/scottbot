@@ -8,6 +8,9 @@ import michael_tn from '../assets/scott_thumb.jpg';
 import dwight_tn from '../assets/dwight_thumb.jpg';
 import jim_tn from '../assets/jim_thumb.jpg';
 import kevin_tn from '../assets/kevin_thumb.jpg';
+import paper  from '../assets/Hexagon-2.jpg';
+
+console.log(paper )
 
 class Form  extends Component{
 	constructor() {
@@ -16,7 +19,7 @@ class Form  extends Component{
 	    	isSending: false,
 	    	isSent: false,
 	    	character: '',
-	    	validImage: true
+	    	validImage: false
 	    }
 	}
 
@@ -47,8 +50,8 @@ class Form  extends Component{
 		let imageTest = ReactDOM.findDOMNode(this.refs.image).value
 
 		this.setState({
-			focusImage: (ReactDOM.findDOMNode(this.refs.image).value.length > 1) ? true : false,
-			validImage: validateImage(imageTest) ===false ? false : true
+			focusImage: (ReactDOM.findDOMNode(this.refs.image).value.length > 1) ? true : false
+			// validImage: validateImage(imageTest) ===false ? false : true
 		})
 
 	}
@@ -66,17 +69,20 @@ class Form  extends Component{
 	    	image:  ReactDOM.findDOMNode(this.refs.image).value
 	    } 
 
-	    if( this.state.validImage !== false ){
-		      postAPI(formData)
-		        .then(resp => {
-		            console.log(resp)
-		            	    this.setState({
-		            	        isSending: false,
-		            	        isSent: true,
-		            	        validImage: true
-		            	    })            	    
-		        })
-	       } 
+	    if( validateImage(formData.image) !== false ){		
+	         postAPI(formData)		
+	           .then(resp => {		
+	               console.log(resp)		
+	               	    this.setState({		
+	               	        isSending: false,		
+	               	        isSent: true		   	
+	               	    })		         	    		
+	           })		
+	           } else {		
+	       	this.setState({		
+	       		validImage: false		
+	       	})		
+	       }
 	}
 
 	selectChar(char){
@@ -107,13 +113,13 @@ class Form  extends Component{
     return (
     		<div className="form-wrap">
     			<img src="" alt=""/>
-   
+
 	  	      	 <form className={ formClass } ref="contentForm" onSubmit={this.handleSubmit.bind(this)}>
 	  	      	  	<div className="character-select">
-    					<button style={{backgroundImage: 'url(' + michael_tn + ')'}} className={character == 'michael'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('michael')}></button>
-    					<button style={{backgroundImage: 'url(' + dwight_tn + ')'}} className={character == 'dwight'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('dwight')}></button>
-    					<button style={{backgroundImage: 'url(' + jim_tn + ')'}} className={character == 'jim'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('jim')}></button>
-    					<button style={{backgroundImage: 'url(' + kevin_tn + ')'}} className={character == 'kevin'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('kevin')}></button>
+    					<div style={{backgroundImage: 'url(' + michael_tn + ')'}} className={character == 'michael'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('michael')}></div>
+    					<div style={{backgroundImage: 'url(' + dwight_tn + ')'}} className={character == 'dwight'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('dwight')}></div>
+    					<div style={{backgroundImage: 'url(' + jim_tn + ')'}} className={character == 'jim'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('jim')}></div>
+    					<div style={{backgroundImage: 'url(' + kevin_tn + ')'}} className={character == 'kevin'? ' character is-selected ' : 'character'} onClick={() => this.selectChar('kevin')}></div>
 
     				</div>
     				<p className="selected-char">Character: <span>{this.state.character}</span> </p>

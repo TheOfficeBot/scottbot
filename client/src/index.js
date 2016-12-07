@@ -6,13 +6,11 @@ import Admin from './components/Administrator';
 import { Router, Route, browserHistory, IndexRedirect, NotFoundRoute } from 'react-router';
 // import './index.css';
 import AuthService from './helpers/AuthService.js';
-import Login from './components/Login.js';
+import LoginView from './components/LoginView.js';
 import Container from './components/Container.js';
 
-const auth = new AuthService("HpthymkekKBCqwn5w03aWCTvi6taPMb3", 'scottbot.auth0.com', options);
-var options = {
-  allowSignUp: false
-};
+const auth = new AuthService("HpthymkekKBCqwn5w03aWCTvi6taPMb3", 'scottbot.auth0.com');
+
 
 const requireAuth = (nextState, replace) => {
   if (!auth.loggedIn()) {
@@ -20,12 +18,22 @@ const requireAuth = (nextState, replace) => {
   }
 }
 
+// OnEnter for callback url to parse access_token
+const parseAuthHash = (nextState, replace) => {
+  if (nextState.location.hash) {
+  	console.log("parseAuthHash" )
+  		
+    auth.parseHash(nextState.location.hash)
+    replace({ pathname: '/admin' })
+  }
+}
+
 const Routes = (
 	 <Router history={browserHistory}>
 	    <Route path="/" component={Container} auth={auth}>
-	    		<IndexRedirect to="/activity"/>
+	    	<IndexRedirect to="/activity"/>
 	    	<Route path="activity" component={App}/>
-	    	<Route path="login"  component={Login}/>
+	    	<Route path="login"  component={LoginView} onEnter={parseAuthHash}/>
 	    	<Route path="admin" component={Admin} onEnter={requireAuth}/>
 	    </Route>
   	</Router>
