@@ -3,9 +3,12 @@ const express 		= require('express'),
 	    morgan 		= require('morgan'),
 	    path      	= require('path'),
 	    bodyParser = require('body-parser'),
-	   server = require('http').Server(app);
-	   // io = require('socket.io')(server);
+	   server = require('http').Server(app),
+	   io = require('socket.io')(server);
 
+	   // console.log('IO IN SERVER', io)
+
+exports.io = io;
 
 var contentController = require('./controllers/content.js');
 var activityController = require('./controllers/activity.js');
@@ -32,16 +35,13 @@ app.listen(app.get('port'), function(){
 require('./controllers/activity')
 
 // SOCKET  ==== ==============================
-  // io.on('connection', (socket) => {
-  //   console.log('a user connected');
+  io.on('connection', (socket) => {
+    console.log('a user connected');
 
-  // });
+  });
 server.listen(8080)
 
 
-
-// sockets.js
-var socketio = require('socket.io');
 
 
 // ROUTING (GET) =============================
@@ -63,5 +63,6 @@ app.get('*', (req, res) => {
    
 //   });
 // };
+
 
 

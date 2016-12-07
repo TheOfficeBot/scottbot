@@ -13,7 +13,7 @@ class Activity  extends Component{
 	constructor(){
 		super();
 		this.state ={
-			cardData: ['a','b']
+			cardData: ['a']
 		}
         //socket.emit('activity', { my: 'data' });
 	}
@@ -37,9 +37,9 @@ class Activity  extends Component{
             date: "2016-12-06T04:34:54.650Z",
             tag: "DUMMY"
           }
-          this.setState({
-            cardData: [ ...this.state.cardData, dummy]
-          })
+          var newArray = this.state.cardData.slice();    
+          newArray.push(dummy); 
+          this.setState({cardData: newArray})
         }
 
        render () {
@@ -48,18 +48,13 @@ class Activity  extends Component{
   		return <Card deets={item} key={i} />
   	})
     return (
-      <div style={{width: '100%'}}  >
-          <ReactCSSTransitionGroup
-              component="div"
-              className="activity"
-               transitionName="example"
-               transitionEnterTimeout={500}
-               transitionLeaveTimeout={300}>
+      <div className="activity"  >
+
       		{cardStream}
-          </ReactCSSTransitionGroup>
+ 
 
 
-          <button className="btn-temp" onClick={this.dropItem.bind(this)}>DROP</button>
+          
 
       </div>
     )

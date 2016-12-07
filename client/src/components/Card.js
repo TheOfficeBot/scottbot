@@ -17,10 +17,10 @@ class Card  extends Component{
       <VelocityComponent animation={{ opacity:1 }} duration={900} runOnMount={true}>
           <div className="card-wrap">
           		<div className="card-label">
-                        <TimeAgo date={timeStamp}/> ago from {deets.user_name} in {deets.channel_name}</div>
+                        <TimeAgo date={timeStamp}/>  by {deets.user_name} </div>
           		<div className="stem"></div>
           		<div className="image-block" style={imgStyle}></div>
-          		<p className="attribute">Submitted by: <span></span></p>   		
+          		<p className="attribute">{deets.team_domain}<span></span></p>   		
           </div>
       </VelocityComponent>
     )
