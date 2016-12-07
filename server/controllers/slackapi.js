@@ -20,7 +20,7 @@ module.exports = {
        	if(content){
        		dataFromDB = content;
        	}
-      }
+      )};
       console.log(dataFromDB);
       //======
       var content = seedData[randomNumber];
