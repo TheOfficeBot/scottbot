@@ -9,7 +9,10 @@ import AuthService from './helpers/AuthService.js';
 import Login from './components/Login.js';
 import Container from './components/Container.js';
 
-const auth = new AuthService("HpthymkekKBCqwn5w03aWCTvi6taPMb3", 'scottbot.auth0.com');
+const auth = new AuthService("HpthymkekKBCqwn5w03aWCTvi6taPMb3", 'scottbot.auth0.com', options);
+var options = {
+  allowSignUp: false
+};
 
 const requireAuth = (nextState, replace) => {
   if (!auth.loggedIn()) {

@@ -8,12 +8,16 @@ export default class AuthService {
 			auth: {
 				redirectUrl: "http://localhost:3000/login",
 				responseType: 'token'
-			}
+			},
+			options: {
+  				allowSignUp: false
+			}			
 		})
 		//Add callback for lock 'authenticated' event
 		this.lock.on('authenticated', this._doAuthentication.bind(this))
 		this.login = this.login.bind(this)
 	}
+	
 	 _doAuthentication(authResult) {
 	    // Saves the user token
 	    this.setToken(authResult.idToken)
