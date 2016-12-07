@@ -23,8 +23,8 @@
     border: none;
     border-radius: 0;
     background: transparent;
-    color: #f18292;
-    font-weight: 400;
+    color: $turq;
+    font-weight: 300;
     font-size: 1.5rem;
     -webkit-appearance: none;
     opacity: 0;
@@ -95,4 +95,14 @@
 .input-filled .input_label-content {
     color: #6B6E6E;
     transform: translate3d(0, -3.3em, 0) scale3d(0.81, 0.81, 1);
+}
+
+.error{
+    color: $red;
+    padding-top: 1rem;
+    opacity: 0;
+}
+
+.input-filled + .error {
+opacity: 1;
 }
