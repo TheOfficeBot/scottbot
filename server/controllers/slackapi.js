@@ -17,7 +17,8 @@ module.exports = {
 
   			Content.find({})
         .then(result=>{
-            console.log('yoooooo', result);
+          dataFromDB = result;
+            console.log('yoooooo', dataFromDB);
         })
         .catch(err=>{
           console.log('error', err);
