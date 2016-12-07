@@ -52,7 +52,7 @@ export class LoginView extends React.Component {
       <div className="login-wrap">
         
         <form className="login-form" onSubmit={this.handleSubmit.bind(this)}>
-          <h2>Login</h2>
+          <h2>Admin Login</h2>
           <span className={nameInput}>
               <input className="input_field" type="text" type="email" ref="email"  onFocus={this.handleFocusUser.bind(this)}     />
               <label className="input_label">
