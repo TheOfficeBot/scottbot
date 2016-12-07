@@ -14,16 +14,16 @@ module.exports = {
       //======
       var dataFromDB;
 
-      // Content.find(function(err, content) {
-      //   if(err){
-      //  	  console.log('coulndt get from db', err);
-      //  	}
-      //  	if(content){
-      //  		dataFromDB = content;
-      //  	}
-      // )};
+      Content.find(function(err, content) {
+        if(err){
+       	  console.log('coulndt get from db', err);
+       	}
+       	if(content){
+       		dataFromDB = content;
+       	}
+      });
 
-      //console.log(dataFromDB);
+      console.log(dataFromDB);
       //======
       var content = seedData[randomNumber];
       console.log("inside slack api controller logging content", content);
