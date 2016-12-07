@@ -24,5 +24,4 @@ module.exports.filterApproved = function (array) {
       return object;
     }
   });
-
 };
