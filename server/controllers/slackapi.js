@@ -14,8 +14,8 @@ module.exports = {
   		Content.find({})
         .then(result=>{
           var dataFromDB = helperFunc.filterApproved(result);
-          
-          console.log('yoooooo this is filtered...', dataFromDB);
+
+          console.log('yoooooo this is filtered...', dataFromDB[0].character);
         })
         .catch(err=>{
           console.log('error', err);
