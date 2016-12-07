@@ -11,12 +11,13 @@ export class Login extends React.Component {
   render() {
     console.log(this.props)
     const { auth } = this.props
-    return (
+
       <div>
         <div>
           <button className="btn-submit" onClick={auth.login.bind(this)}>Administrator Login</button>
         </div>
       </div>
+
     )
   }
 }

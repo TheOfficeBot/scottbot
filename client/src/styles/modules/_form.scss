@@ -10,10 +10,13 @@
 
 
 .form-success{
+	position: absolute;
+	top: 240px;
 	text-align: center;	
 	opacity: 0;
 	transform: translateY(200px);
 	transition: all .4s ease;
+	z-index: -1;
 	h3{
 		font-size: 2rem;
 		font-weight: 700;
@@ -34,7 +37,8 @@
 	}
 	&.is-visible{
 			opacity: 1;
-			transform: translateY(-350px);
+			transform: translateY(0);
+			z-index: 0;
 	}
 }
 .reset-form{

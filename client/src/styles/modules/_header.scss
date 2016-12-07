@@ -2,7 +2,16 @@
 header{
 	height: 70px;
 	width: 100%;
-	position: fixed;
+	position: absolute;
 	top: 0 ; left: 0;
-	background-color: rgba($black, 0.1);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 2rem;
+	background-color: rgba(#e0e2e2, 0.1);
+	color: $white;
+}
+
+.btn-header{
+
 }
