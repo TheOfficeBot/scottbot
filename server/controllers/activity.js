@@ -1,8 +1,8 @@
 var Activity = require('../models/activity.js');
+const socket =require('../server').io
+console.log('APP',  socket.emit)
+    
 
-//export
-//post method
-//instantiate row in collection
 
 
 module.exports = {
@@ -33,13 +33,9 @@ module.exports = {
                 console.log("this fires after the post hook")
             }
         }).then(function(arg) {
-<<<<<<< HEAD
-            res.send("posted to db")
-=======
             //socket.emit('activity', { hello: 'world' });
             res.send("posted to db")
-            // emit socket stuff
->>>>>>> feat/stream
+
         })
     }
 }

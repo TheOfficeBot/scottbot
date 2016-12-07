@@ -1,19 +1,22 @@
 .example-appear {
   opacity: 0.01;
+  transform: translateY(200px);
 }
 
 .example-appear.example-appear-active {
   opacity: 1;
-  transition: opacity .5s ease-in;
+  transition: all .7s ease-in;
 }
 
 .example-enter {
   opacity: 0.01;
+  transform: translateY(200px);
 }
 
 .example-enter.example-enter-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transform: translateY(200px);
+  transition: all 700ms ease-in;
 }
 
 .example-leave {

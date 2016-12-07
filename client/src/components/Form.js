@@ -15,9 +15,12 @@ class Form  extends Component{
 	    this.state = {
 	    	isSending: false,
 	    	isSent: false,
-	    	character: ''
+	    	character: '',
+	    	validImage: true
 	    }
 	}
+
+
 
 	handleClick(e){
 		e.preventDefault();
@@ -41,9 +44,13 @@ class Form  extends Component{
 		})		
 	}
 	handleBlurImage(e){
+		let imageTest = ReactDOM.findDOMNode(this.refs.image).value
+
 		this.setState({
-			focusImage: (ReactDOM.findDOMNode(this.refs.image).value.length > 1) ? true : false
-		})		
+			focusImage: (ReactDOM.findDOMNode(this.refs.image).value.length > 1) ? true : false,
+			validImage: validateImage(imageTest) ===false ? false : true
+		})
+
 	}
 
 
@@ -58,26 +65,18 @@ class Form  extends Component{
 	    	character:  this.state.character,
 	    	image:  ReactDOM.findDOMNode(this.refs.image).value
 	    } 
-	    if( validateImage(formData.image) !== false ){
-	    	this.setState({
-	    		isSending: true
-	    	})
-	      postAPI(formData)
-	        .then(resp => {
-	            console.log(resp)
-	            	    this.setState({
-	            	        isSending: false,
-	            	        isSent: true
 
-	            	    })
-	            	    
-	        })
-	        } else {
-	    	this.setState({
-	    		validImage: false
-	    	})
-	    }
-
+	    if( this.state.validImage !== false ){
+		      postAPI(formData)
+		        .then(resp => {
+		            console.log(resp)
+		            	    this.setState({
+		            	        isSending: false,
+		            	        isSent: true,
+		            	        validImage: true
+		            	    })            	    
+		        })
+	       } 
 	}
 
 	selectChar(char){
@@ -104,8 +103,10 @@ class Form  extends Component{
       'input-filled': this.state.focusImage
     });
     const {character} = this.state
+    //const preview = this.state.validImage
     return (
     		<div className="form-wrap">
+    			<img src="" alt=""/>
    
 	  	      	 <form className={ formClass } ref="contentForm" onSubmit={this.handleSubmit.bind(this)}>
 	  	      	  	<div className="character-select">
@@ -116,19 +117,22 @@ class Form  extends Component{
 
     				</div>
     				<p className="selected-char">Character: <span>{this.state.character}</span> </p>
+    				<span className={imageInput}>
+    					<input className="input_field" onBlur={this.handleBlurImage.bind(this)} onFocus={this.handleFocusImage.bind(this)}     type="text" ref="image" />
+    					<label className="input_label">
+    						<span className="input_label-content">Image {character.length > 1 ? `for ${character}` : null}</span>
+    					</label>
+    				</span>
+    				{this.state.validImage ? null : <small className="error"> Provide a valid image URL with  "jpg", "png" or "gif" </small>}  
 
+    				
 	  	      	 	<span className={nameInput}>
 	  	      	 		<input className="input_field" onBlur={this.handleBlurName.bind(this)} onFocus={this.handleFocusName.bind(this)}   type="text" ref="name" />
 	  	      	 		<label className="input_label">
 	  	      	 			<span className="input_label-content">Your Name</span>
 	  	      	 		</label>
 	  	      	 	</span>
-	  	      	 	<span className={imageInput}>
-	  	      	 		<input className="input_field" onBlur={this.handleBlurImage.bind(this)} onFocus={this.handleFocusImage.bind(this)}     type="text" ref="image" />
-	  	      	 		<label className="input_label">
-	  	      	 			<span className="input_label-content">Image {character.length > 1 ? `for ${character}` : null}</span>
-	  	      	 		</label>
-	  	      	 	</span>
+
 	    	 		
 	  			<input className="btn-submit" type="submit" value="submit"/>
 	  			{this.state.isSending ? <p>SENDING</p> : null}
