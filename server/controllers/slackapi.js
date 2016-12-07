@@ -15,15 +15,13 @@ module.exports = {
       var dataFromDB;
 
 
-  			Content.find({})
+  		Content.find({})
         .then(result=>{
-            console.log('yoooooo', result);
+          dataFromDB = result;
         })
         .catch(err=>{
           console.log('error', err);
-        })
-
-      getFromContents();
+      })
 
       console.log(dataFromDB);
       //======
