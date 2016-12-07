@@ -31,29 +31,45 @@ module.exports = {
         .catch(err=>{
           console.log('error', err);
       })
-
-      // if(dataFromDB){
-      //   console.log(dataFromDB);
-      // }
-      //======
-
     }else {
-      //console.log('inside else', character);
-      var charMedia = helperFunc.filterChar(character.toLowerCase(), seedData);
-      //console.log(charMedia);
-      var randomNumber = helperFunc.randomize(charMedia);
-      var content = charMedia[randomNumber];
-      console.log("inside slack api controller logging content", content);
-      var activity = new Activity({
-        team_domain: req.body.team_domain,
-      	channel_name: req.body.channel_name,
-      	user_name: req.body.user_name,
-      	character: req.body.text,
-      	content: content.text
-      });
-      console.log("inside slack api controller logging content", content);
-      ActivityCtrl.post(activity, res);
-      res.send(content);
+      // var charMedia = helperFunc.filterChar(character.toLowerCase(), seedData);
+      // var randomNumber = helperFunc.randomize(charMedia);
+      // var content = charMedia[randomNumber];
+      // var activity = new Activity({
+      //   team_domain: req.body.team_domain,
+      // 	channel_name: req.body.channel_name,
+      // 	user_name: req.body.user_name,
+      // 	character: req.body.text,
+      // 	content: content.text
+      // });
+      //
+      // ActivityCtrl.post(activity, res);
+      // res.send(content);
+      //================
+      Content.find({})
+        .then(result=>{
+          var dataFromDB = helperFunc.filterApproved(result);
+          var charMedia = helperFunc.filterChar(character.toLowerCase(), dataFromDB);
+          console.log('yoooooo this is filtered...', dataFromDB);
+          var randomNumber = helperFunc.randomize(charMedia);
+          var contentObject = charMedia[randomNumber];
+          var activity = new Activity({
+            team_domain: req.body.team_domain,
+          	channel_name: req.body.channel_name,
+          	user_name: req.body.user_name,
+          	character: req.body.text,
+          	content: contentObject.text
+          });
+          //console.log("inside slack api controller logging content", content);
+          ActivityCtrl.post(activity, res);
+          res.send(contentObject);
+        })
+        .catch(err=>{
+          console.log('error', err);
+      })
+
+
+
     }
   }
 };
