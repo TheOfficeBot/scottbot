@@ -35,7 +35,7 @@ module.exports = {
       	character: req.body.text,
       	content: content.text
       });
-      ..console.log("inside slack api controller logging content", content);
+      //console.log("inside slack api controller logging content", content);
       ActivityCtrl.post(activity, res);
       res.send(content);
     }else {
