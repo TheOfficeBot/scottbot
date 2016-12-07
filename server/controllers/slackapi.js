@@ -11,8 +11,8 @@ module.exports = {
     if(character === '' || character === undefined){
       var randomNumber = helperFunc.randomize(seedData);
       //======
-      var dataFromDB = contentControl.get();
-      console.log(dataFromDB);
+      //var dataFromDB = contentControl.get();
+      //console.log(dataFromDB);
       //======
       var content = seedData[randomNumber];
       console.log("inside slack api controller logging content", content);
