@@ -17,3 +17,12 @@ module.exports.filterChar = function(name, array) {
   }
   return results;
 };
+
+module.exports.filterApproved = function (array) {
+  return array.filter(function(object){
+    if(object.approved === true) {
+      return object;
+    }
+  });
+
+};

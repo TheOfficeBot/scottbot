@@ -7,7 +7,7 @@ export function getAPI(endPoint){
 export function postAPI(formData){
 	return axios.post('/api/content',{
 		name: formData.name,
-		uri: formData.image,
+		text: formData.image,
 		character: formData.character
 	})
 

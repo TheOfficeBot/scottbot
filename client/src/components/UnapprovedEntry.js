@@ -7,9 +7,9 @@ class UnapprovedEntry extends Component {
 		this.state ={
 			approved: false
 		}
-		
+
 	};
-	
+
   	clickApproved(){
   		console.log("in click handler", this.props.entryData)
   		putAPI(this.props.entryData)
@@ -23,11 +23,11 @@ class UnapprovedEntry extends Component {
 	    	return (
 	    		<div>Loading</div>
 	    		)
-	    } 
+	    }
 	    else {
 	    	return (
 	    		<div className="card-wrap admin">
-		  				<img src={this.props.entryData.uri} height="150"/>
+		  				<img src={this.props.entryData.text} height="150"/>
 		    			<p className="attribute">Username: {this.props.entryData.name}</p>
 		    			<p className="attribute">Pending approval</p>
 		    			<p className="attribute">Posted 5 minutes ago</p>
