@@ -15,15 +15,15 @@ module.exports = {
       var dataFromDB;
 
 
-  		Content.find({})
+  			Content.find({})
         .then(result=>{
-          dataFromDB = result;
+            console.log('yoooooo', result);
         })
         .catch(err=>{
           console.log('error', err);
-      })
+        })
 
-      console.log(dataFromDB);
+      //console.log(dataFromDB);
       //======
       var content = seedData[randomNumber];
       console.log("inside slack api controller logging content", content);
