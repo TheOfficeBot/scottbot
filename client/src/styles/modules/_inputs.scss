@@ -9,8 +9,8 @@
     vertical-align: top;
     overflow: hidden;
     padding-top: 2em;
-    &::last-child{
-        margin-top: 1rem;
+    &::first-child{
+        margin-top:0;
     }
 }
 
@@ -98,6 +98,8 @@
 }
 
 .error{
+    position: relative;
+    top: 10px;
     color: $red;
     padding-top: 1rem;
     opacity: 0;

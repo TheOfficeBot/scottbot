@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { VelocityComponent , VelocityTransitionGroup } from 'velocity-react';
 import velocity_animate from 'velocity-animate';
@@ -21,12 +22,21 @@ class Activity  extends Component{
 
 
     componentWillMount(){
-            getAPI('activity')
-              .then(item =>{
-                 this.setState({
-                      cardData: _.sortBy(item.data, [(items) => item.date]).reverse()
-                 })               
-              })
+      this.getActivity();
+      setInterval( ()=>{   this.getActivity()}, 10000);
+             
+    }
+
+        getActivity(){
+          getAPI('activity')
+            .then(item =>{
+              const lastTwenty = item.data.slice(item.length -20)
+              console.log("20", lastTwenty )
+              
+               this.setState({
+                    cardData: _.sortBy(lastTwenty, [(items) => item.date]).reverse()
+               })               
+            })
         }
 
         dropItem(){
@@ -50,6 +60,9 @@ class Activity  extends Component{
       <div className="activity"  >
             <Header/>
       		{cardStream}
+          <Link to="/admin"  className="btn-admin">
+          Admin
+          </Link>
       </div>
     )
   }
