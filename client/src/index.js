@@ -21,7 +21,7 @@ const Routes = (
 	 <Router history={browserHistory}>
 	    <Route path="/" component={Container} auth={auth}>
 	    		<IndexRedirect to="/activity"/>
-          <NotFoundRoute handler={App} />
+          {/* <NotFoundRoute handler={App} /> */}
 	    	<Route path="activity" component={App}/>
 	    	<Route path="login"  component={Login}/>
 	    	<Route path="admin" component={Admin} onEnter={requireAuth}/>
