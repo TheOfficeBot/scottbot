@@ -22,7 +22,7 @@ module.exports = {
           	channel_name: req.body.channel_name,
           	user_name: req.body.user_name,
           	character: req.body.text,
-          	content: content.text
+          	content: contentObject.text
           });
           //console.log("inside slack api controller logging content", content);
           ActivityCtrl.post(activity, res);
