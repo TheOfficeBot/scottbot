@@ -1,5 +1,5 @@
 var helperFunc = require('../helpers/functions.js');
-var seedData = require('../helpers/seedData.js');
+//var seedData = require('../helpers/seedData.js');
 var Activity = require('../models/activity.js');
 var ActivityCtrl = require('../controllers/activity.js');
 //var contentControl = require('./content.js');
