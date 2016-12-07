@@ -45,12 +45,10 @@ server.listen(8080)
 
 // ROUTING (GET) =============================
 app.get('/api/content', contentController.get);
-app.post('/api/addcontent', contentController.post);
-
+app.post('/api/content', contentController.post);
+app.put('/api/content', contentController.put);
 app.post('/api/slack', slackAPI.post);
-
 app.get('/api/activity', activityController.get);
-
 app.get('*', (req, res) => {
 	res.sendfile('./client/public/index.html');
 })
