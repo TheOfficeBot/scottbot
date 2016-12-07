@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getAPI } from '../helpers/http';
-import UnapprovedEntry from './UnapprovedEntry.js'
+import UnapprovedEntry from './UnapprovedEntry.js';
+import _ from 'lodash';
 
 class Admin extends Component {
 	constructor(){
@@ -12,18 +13,12 @@ class Admin extends Component {
 	}
 	componentWillMount(){
             getAPI('content')
-              .then(item =>{
-              	console.log("in comp will mount")
-              	console.log(item.data)
-              	var unapproved= [];
-              	for(var i = 0; i<item.data.length; i++){
-              		if(item.data[i].approved === false){
-              			unapproved.push(item.data[i])
-              		};
-              	};
-              	console.log("unapproved", unapproved)
+              .then(resp =>{
+                const entries = resp.data;
+                console.log("ENTRIES", entries )
+                  
                  this.setState({
-                      entries: unapproved
+                      entries: _.filter(entries, item => !item.approved)
                  })               
               })
         }
@@ -38,7 +33,7 @@ class Admin extends Component {
       	<header className="adminhead">
       		<h1>Logged In As Administrator</h1>
       	</header> 
-      	<section>
+      	<section className="q-grid">
       		{entryList}
       	</section>
       </main>

@@ -18,10 +18,15 @@ class Card  extends Component{
       <VelocityComponent animation={{ opacity:1 }} duration={900} runOnMount={true}>
           <div className="card-wrap">
           		<div className="card-label">
-                        <TimeAgo date={timeStamp}/>  by {deets.user_name} </div>
+                        <i className="ion-ios-clock-outline"></i>
+                        <TimeAgo date={timeStamp}/>   </div>
           		<div className="stem"></div>
           		<div className="image-block" style={imgStyle}></div>
-          		<p className="attribute">{deets.team_domain}<span></span></p>   		
+                    <div className="card-deets">
+                      <p className="attribute">{deets.user_name}<span></span></p>     
+                      <p className="pill">{deets.team_domain}<span></span></p>     
+                    </div>
+          			
           </div>
       </VelocityComponent>
     )

@@ -1,47 +1,57 @@
-import Auth0Lock from 'auth0-lock';
-import { browserHistory } from 'react-router';
+
+import Auth0 from 'auth0-js'
 
 export default class AuthService {
-	constructor(clientId, domain) {
-		//Configure Auth0
-		this.lock = new Auth0Lock(clientId, domain, {
-			auth: {
-				redirectUrl: "http://localhost:3000/login",
-				responseType: 'token'
-			}
-		})
-		//Add callback for lock 'authenticated' event
-		this.lock.on('authenticated', this._doAuthentication.bind(this))
-		this.login = this.login.bind(this)
-	}
-	 _doAuthentication(authResult) {
-	    // Saves the user token
-	    this.setToken(authResult.idToken)
-	    // navigate to the home route
-	    browserHistory.replace('/admin')
-  	}
-  	 login() {
-    	// Call the show method to display the widget.
-    	this.lock.show()
-  	}
+  constructor(clientId, domain) {
+   //super();
 
-	  loggedIn() {
-	    // Checks if there is a saved token and it's still valid
-	    return !!this.getToken()
-	  }
+    // Configure Auth0
+    this.auth0 = new Auth0({
+      clientID: 'HpthymkekKBCqwn5w03aWCTvi6taPMb3',
+      domain: 'scottbot.auth0.com',
+      responseType: 'token',
+      callbackURL: `${window.location.origin}/login`
+    });
 
-	  setToken(idToken) {
-	    // Saves user token to local storage
-	    localStorage.setItem('id_token', idToken)
-	  }
+    this.login = this.login.bind(this)
+    this.signup = this.signup.bind(this)
+  }
 
-	  getToken() {
-	    // Retrieves the user token from local storage
-	    return localStorage.getItem('id_token')
-	  }
+  login(params, onError) {
+    //redirects the call to auth0 instance
+    this.auth0.login(params, onError)
+  }
 
-	  logout() {
-	    // Clear user token and profile data from local storage
-	    localStorage.removeItem('id_token');
-	  }
+  signup(params, onError) {
+    //redirects the call to auth0 instance
+    this.auth0.signup(params, onError)
+  }
+
+  parseHash(hash) {
+    // uses auth0 parseHash method to extract data from url hash
+    const authResult = this.auth0.parseHash(hash)
+    if (authResult && authResult.idToken) {
+      this.setToken(authResult.idToken)
+    }
+  }
+
+  loggedIn() {
+    // Checks if there is a saved token and it's still valid
+    return !!this.getToken()
+  }
+
+  setToken(idToken) {
+    // Saves user token to local storage
+    localStorage.setItem('id_token', idToken)
+  }
+
+  getToken() {
+    // Retrieves the user token from local storage
+    return localStorage.getItem('id_token')
+  }
+
+  logout() {
+    // Clear user token and profile data from local storage
+    localStorage.removeItem('id_token');
+  }
 }

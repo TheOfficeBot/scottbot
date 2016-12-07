@@ -5,6 +5,8 @@ import velocity_animate from 'velocity-animate';
 import velocity_ui from 'velocity-animate/velocity.ui';
 import { getAPI } from '../helpers/http';
 import Card from './Card';
+
+import Header from './Header';
 import io from 'socket.io-client';
 import _ from 'lodash';
 //const socket = io('http://localhost:8080')
@@ -39,19 +41,15 @@ class Activity  extends Component{
         }
 
        render () {
+        const { auth } = this.props
 
   	const cardStream = this.state.cardData.map( (item, i)=>{
   		return <Card deets={item} key={i} />
   	})
     return (
       <div className="activity"  >
-
+            <Header/>
       		{cardStream}
- 
-
-
-          
-
       </div>
     )
   }

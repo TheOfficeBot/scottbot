@@ -28,7 +28,7 @@ module.exports = {
 		post: function(req,res){
 			var content = new Content({
 				name: req.body.name,
-				uri: req.body.uri, 
+				text: req.body.text, 
 				character: req.body.character,
 				approved: req.body.approved,
 				date: req.body.date
