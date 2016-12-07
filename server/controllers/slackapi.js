@@ -24,7 +24,9 @@ module.exports = {
           console.log('error', err);
         })
 
-      console.log(dataFromDB);
+      if(dataFromDB){
+        console.log(dataFromDB);
+      }
       //======
       var content = seedData[randomNumber];
       //console.log("inside slack api controller logging content", content);
