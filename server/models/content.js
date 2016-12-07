@@ -6,7 +6,7 @@ var contentSchema = new Schema({
 	uri: String,
 	character: String,
 	response_type: {type: String, default: "in_channel"},
-	approved: {type: Boolean, default: true},
+	approved: {type: Boolean, default: false},
 	date: {type: Date, default: Date.now}
 })
 
