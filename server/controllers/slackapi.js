@@ -2,14 +2,18 @@ var helperFunc = require('../helpers/functions.js');
 var seedData = require('../helpers/seedData.js');
 var Activity = require('../models/activity.js');
 var ActivityCtrl = require('../controllers/activity.js');
+var contentControl = require('./content.js');
 
 module.exports = {
   post: function (req, res) {
     var character = req.body.text;
   	console.log(req.body);
     if(character === '' || character === undefined){
-      console.log('inside if');
       var randomNumber = helperFunc.randomize(seedData);
+      //======
+      //var dataFromDB = contentControl.get;
+      
+      //======
       var content = seedData[randomNumber];
       console.log("inside slack api controller logging content", content);
       var activity = new Activity({
