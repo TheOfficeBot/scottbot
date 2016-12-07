@@ -13,7 +13,7 @@ module.exports = {
       var randomNumber = helperFunc.randomize(seedData);
       //======
       var dataFromDB;
-      Content.find(function(err, content){
+      Content.find(function(err, content) {
         if(err){
        	  console.log('coulndt get from db', err);
        	}
@@ -21,6 +21,7 @@ module.exports = {
        		dataFromDB = content;
        	}
       )};
+
       console.log(dataFromDB);
       //======
       var content = seedData[randomNumber];
