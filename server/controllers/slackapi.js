@@ -2,7 +2,7 @@ var helperFunc = require('../helpers/functions.js');
 var seedData = require('../helpers/seedData.js');
 var Activity = require('../models/activity.js');
 var ActivityCtrl = require('../controllers/activity.js');
-var contentControl = require('./content.js');
+//var contentControl = require('./content.js');
 var Content = require('../models/content.js');
 
 module.exports = {
@@ -10,12 +10,23 @@ module.exports = {
     var character = req.body.text;
   	//console.log(req.body);
     if(character === '' || character === undefined){
-      var randomNumber = helperFunc.randomize(seedData);
+
   		Content.find({})
         .then(result=>{
           var dataFromDB = helperFunc.filterApproved(result);
-
           console.log('yoooooo this is filtered...', dataFromDB);
+          var randomNumber = helperFunc.randomize(dataFromDB);
+          var contentObject = dataFromDB[randomNumber];
+          var activity = new Activity({
+            team_domain: req.body.team_domain,
+          	channel_name: req.body.channel_name,
+          	user_name: req.body.user_name,
+          	character: req.body.text,
+          	content: content.text
+          });
+          //console.log("inside slack api controller logging content", content);
+          ActivityCtrl.post(activity, res);
+          res.send(contentObject);
         })
         .catch(err=>{
           console.log('error', err);
@@ -25,18 +36,7 @@ module.exports = {
       //   console.log(dataFromDB);
       // }
       //======
-      var content = seedData[randomNumber];
-      //console.log("inside slack api controller logging content", content);
-      var activity = new Activity({
-        team_domain: req.body.team_domain,
-      	channel_name: req.body.channel_name,
-      	user_name: req.body.user_name,
-      	character: req.body.text,
-      	content: content.text
-      });
-      //console.log("inside slack api controller logging content", content);
-      ActivityCtrl.post(activity, res);
-      res.send(content);
+
     }else {
       //console.log('inside else', character);
       var charMedia = helperFunc.filterChar(character.toLowerCase(), seedData);
