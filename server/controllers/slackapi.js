@@ -8,7 +8,7 @@ var Content = require('../models/content.js');
 module.exports = {
   post: function (req, res) {
     var character = req.body.text;
-  	console.log(req.body);
+  	//console.log(req.body);
     if(character === '' || character === undefined){
       var randomNumber = helperFunc.randomize(seedData);
       //======
@@ -18,16 +18,16 @@ module.exports = {
   			Content.find({})
         .then(result=>{
           dataFromDB = result;
-            console.log('yoooooo', dataFromDB);
+            //console.log('yoooooo', dataFromDB);
         })
         .catch(err=>{
           console.log('error', err);
         })
 
-      //console.log(dataFromDB);
+      console.log(dataFromDB);
       //======
       var content = seedData[randomNumber];
-      console.log("inside slack api controller logging content", content);
+      //console.log("inside slack api controller logging content", content);
       var activity = new Activity({
         team_domain: req.body.team_domain,
       	channel_name: req.body.channel_name,
@@ -35,7 +35,7 @@ module.exports = {
       	character: req.body.text,
       	content: content.text
       });
-      console.log("inside slack api controller logging content", content);
+      ..console.log("inside slack api controller logging content", content);
       ActivityCtrl.post(activity, res);
       res.send(content);
     }else {
