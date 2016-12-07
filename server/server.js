@@ -12,6 +12,8 @@ var contentController = require('./controllers/content.js');
 var activityController = require('./controllers/activity.js');
 var db = require('./db/config.js');
 var slackAPI = require('./controllers/slackapi.js');
+var slackButton = require('./controllers/slackButton.js');
+
 
 // CONFIG (USE) ============================
 app.use( morgan('dev') );
@@ -30,7 +32,7 @@ app.listen(app.get('port'), function(){
 	console.log('API Server started: http://localhost:' + app.get('port') + '/');
 })
 
-require('./controllers/activity')
+// require('./controllers/activity')
 
 // SOCKET  ==== ==============================
   io.on('connection', (socket) => {
@@ -39,15 +41,16 @@ require('./controllers/activity')
   });
 server.listen(8080)
 
-
-
-
 // ROUTING (GET) =============================
 app.get('/api/content', contentController.get);
 app.post('/api/content', contentController.post);
 app.put('/api/content', contentController.put);
 app.post('/api/slack', slackAPI.post);
 app.get('/api/activity', activityController.get);
+app.get('/slack', slackButton);
+// Connect controller for endpoint
+//app.use('/api/tasks', taskRouter)
+
 app.get('*', (req, res) => {
 	res.sendfile('./client/public/index.html');
 })
@@ -56,9 +59,6 @@ app.get('*', (req, res) => {
 //   var io = socketio.listen(server);
 
 //   io.sockets.on('connection', function (socket) {
-   
+
 //   });
 // };
-
-
-

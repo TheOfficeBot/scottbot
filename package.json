@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/server.js",
+    "start": "node server/server.js",
     "start-prod": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently  \" nodemon server/server.js \"   \"cd client && npm run watch  \"  "
@@ -15,10 +15,12 @@
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "foreman": "^2.0.0",
     "mongoose": "^4.7.1",
     "morgan": "^1.7.0",
     "mpromise": "^0.5.5",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "request": "^2.79.0"
   },
   "devDependencies": {
     "concurrently": "^3.1.0"
