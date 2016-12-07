@@ -15,7 +15,7 @@ module.exports = {
         .then(result=>{
           var dataFromDB = helperFunc.filterApproved(result);
 
-          console.log('yoooooo this is filtered...', dataFromDB[0].character);
+          console.log('yoooooo this is filtered...', dataFromDB);
         })
         .catch(err=>{
           console.log('error', err);
