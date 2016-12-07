@@ -5,10 +5,18 @@ export function getAPI(endPoint){
 }
 
 export function postAPI(formData){
-	return axios.post('/api/addcontent',{
+	return axios.post('/api/content',{
 		name: formData.name,
 		uri: formData.image,
 		character: formData.character
+	})
+
+}
+
+export function putAPI(content){
+	console.log("in putAPI checking content", content)
+	return axios.put('/api/content',{
+		_id: content._id
 	})
 
 }

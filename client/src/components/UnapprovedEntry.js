@@ -1,51 +1,39 @@
 import React, { Component } from 'react';
-import { getAPI } from '../helpers/http';
+import { getAPI, putAPI } from '../helpers/http';
 
 class UnapprovedEntry extends Component {
 	constructor(props){
 		super(props);
 		this.state ={
-			entries: [
-			]
+			approved: false
 		}
+		
 	};
-	componentWillMount() {
-            getAPI('content')
-              .then(item =>{
-              	console.log("in comp will mount")
-              	console.log(item.data)
-              	var unapproved= [];
-              	for(var i = 0; i<item.data.length; i++){
-              		if(item.data[i].approved === false){
-              			unapproved.push(item.data[i])
-              		};
-              	};
-              	console.log("unapproved", unapproved)
-                this.setState({
-                      entries: unapproved
-                 })               
-              })
-    }
+	
+  	clickApproved(){
+  		console.log("in click handler", this.props.entryData)
+  		putAPI(this.props.entryData)
+  		.then(function(update){
+  			console.log("in click handler for approval", update)
+  		})
+  	}
+
 	render() {
-		console.log(this.state.entries)
-		var test = this.state.entries[5]
-		console.log("test in unnapproved entry", test)
-    if(!this.state.entries[5]){
-    	return (
-    		<div>Loading</div>
-    		)
-    } 
-    else {
-    console.log("should be url", this.state.entries[5].uri)
-    return (
-    	<div className="card-wrap admin">
-    		<img src={this.state.entries[5].uri} height="150"/>
-    		<p className="attribute">Username: {this.state.entries[5].username}</p>
-    		<p className="attribute">Approved: {this.state.entries[5].approved}</p>
-    		<p className="attribute">Posted: 5 minutes ago</p>
-    		<button>Approve</button>
-    	</div>
-    )}
+	    if(!this.props.entryData){
+	    	return (
+	    		<div>Loading</div>
+	    		)
+	    } 
+	    else {
+	    	return (
+	    		<div className="card-wrap admin">
+		  				<img src={this.props.entryData.uri} height="150"/>
+		    			<p className="attribute">Username: {this.props.entryData.name}</p>
+		    			<p className="attribute">Pending approval</p>
+		    			<p className="attribute">Posted 5 minutes ago</p>
+		    			<button onClick={this.clickApproved.bind(this)}>Approve</button>
+		  		</div>)
+		}
   }
 }
 

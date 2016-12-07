@@ -11,10 +11,24 @@ module.exports = {
 				}
 			})
 		},
+		put: function(req,res){
+			var query = {_id: req.body._id};
+			console.log("query in put", query);
+			Content.update(query, { $set: { approved: 'true' }}, function(err, update){
+				if(err){
+					return handle(err);
+				}
+				if(update){
+					console.log("update in put", update);
+					res.json(update);
+				}
+			})
+
+		},
 		post: function(req,res){
 			var content = new Content({
 				name: req.body.name,
-				text: req.body.text, 
+				uri: req.body.uri, 
 				character: req.body.character,
 				approved: req.body.approved,
 				date: req.body.date

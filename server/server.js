@@ -26,7 +26,8 @@ app.listen(app.get('port'), function(){
 })
 // ROUTING (GET) =============================
 app.get('/api/content', contentController.get);
-app.post('/api/addcontent', contentController.post);
+app.post('/api/content', contentController.post);
+app.put('/api/content', contentController.put);
 app.post('/api/slack', slackAPI.post);
 // Connect controller for endpoint
 //app.use('/api/tasks', taskRouter)
