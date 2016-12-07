@@ -11,22 +11,19 @@ module.exports = {
   	//console.log(req.body);
     if(character === '' || character === undefined){
       var randomNumber = helperFunc.randomize(seedData);
-      //======
-      var dataFromDB;
-
-
-  			Content.find({})
+  		Content.find({})
         .then(result=>{
-          dataFromDB = result;
-            //console.log('yoooooo', dataFromDB);
+          var dataFromDB = helperFunc.filterApproved(result);
+          
+          console.log('yoooooo this is filtered...', dataFromDB);
         })
         .catch(err=>{
           console.log('error', err);
-        })
+      })
 
-      if(dataFromDB){
-        console.log(dataFromDB);
-      }
+      // if(dataFromDB){
+      //   console.log(dataFromDB);
+      // }
       //======
       var content = seedData[randomNumber];
       //console.log("inside slack api controller logging content", content);
