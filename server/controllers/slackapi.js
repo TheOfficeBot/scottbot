@@ -3,6 +3,7 @@ var seedData = require('../helpers/seedData.js');
 var Activity = require('../models/activity.js');
 var ActivityCtrl = require('../controllers/activity.js');
 var contentControl = require('./content.js');
+var Content = require('../models/content.js');
 
 module.exports = {
   post: function (req, res) {
@@ -11,7 +12,15 @@ module.exports = {
     if(character === '' || character === undefined){
       var randomNumber = helperFunc.randomize(seedData);
       //======
-      var dataFromDB = contentControl.get(req, res);
+      var dataFromDB;
+      Content.find(function(err, content){
+        if(err){
+       	  console.log('coulndt get from db', err);
+       	}
+       	if(content){
+       		dataFromDB = content;
+       	}
+      }
       console.log(dataFromDB);
       //======
       var content = seedData[randomNumber];
