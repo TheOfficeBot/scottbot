@@ -22,9 +22,9 @@ module.exports = function(req, res){
 				console.log('fuck we got an error', error);
 			}else{
 				res.json(body);
-        res.redirect('https://scottbotoffice.herokuapp.com/activity');
+
 			}
 		})
 	}
-
+  res.redirect('https://scottbotoffice.herokuapp.com/activity');
 }
