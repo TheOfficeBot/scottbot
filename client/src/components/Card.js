@@ -18,7 +18,7 @@ class Card  extends Component{
       <VelocityComponent animation={{ opacity:1 }} duration={900} runOnMount={true}>
           <div className="card-wrap">
           		<div className="card-label">
-                        <i className="ion-ios-clock-outline"></i>
+                        <i className="ion-android-time"></i>
                         <TimeAgo date={timeStamp}/>   </div>
           		<div className="stem"></div>
           		<div className="image-block" style={imgStyle}></div>

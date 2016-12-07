@@ -69,7 +69,7 @@ class Form  extends Component{
 	    	image:  ReactDOM.findDOMNode(this.refs.image).value
 	    } 
 
-	    if( validateImage(formData.image) !== false ){		
+	    if( validateImage(formData.image) !== false && formData.character !== null ){		
 	         postAPI(formData)		
 	           .then(resp => {		
 	               console.log(resp)		
@@ -141,7 +141,7 @@ class Form  extends Component{
 
 	    	 		
 	  			<input className="btn-submit" type="submit" value="submit"/>
-	  			{this.state.isSending ? <p>SENDING</p> : null}
+	  		
 	    	 	</form>
 
 	    	 	<div className={successClass}>	    	 		
